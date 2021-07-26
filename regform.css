@@ -136,7 +136,7 @@ background-image: linear-gradient(315deg, #f2cf07 0%, #55d284 74%);
 }
 .bi{
 		float: right;
-		transform: translate(0,-200%);
+		transform: translate(0,-220%);
 		cursor: pointer;
 		font-size: 20px;
 }
