@@ -31,11 +31,13 @@
 				<div class="col">
 					<p>Employee ID:</p>
 				  <input type="text" id="empid" class="form-control" placeholder="Employee ID" aria-label="Employee ID" >
+				  <i class="bi bi-asterisk" id="empida"></i>
 				  <span id="empid2" class="text-danger font-weight-bold "></span>
 				</div>
 				<div class="col">					
 					<p>Employee Name:</p>
 				  <input type="text" id="empfullname" class="form-control" placeholder="Employee name" aria-label="Employee name" >
+				  <i class="bi bi-asterisk" id="empfnamea"></i>
 				  <span id="empfullname2" class="text-danger font-weight-bold "></span>
 				</div>
 			</div>
@@ -53,12 +55,14 @@
 			</div>
             <div class="row g-3">
 				<div class="col">
-					<p>DOJ:</p>
-					<input type="date" name="joindate" placeholder="Enter DOJ" >
+					<p>DOB:</p>
+					<input type="date" name="birthdate" placeholder="Enter DOB"  >					
+					<i class="bi bi-asterisk" id="dob"></i>
 				</div>
 					<div class="col">
-						<p>DOB:</p>
-						<input type="date" name="birthdate" placeholder="Enter DOB"  >
+						<p>DOJ:</p>
+						<input type="date" name="joindate" placeholder="Enter DOJ" >
+						<i class="bi bi-asterisk" id="dob"></i>
 					</div>
 			</div>
 			
@@ -81,16 +85,18 @@
 			<div class="col">
 				<p>Designation:</p>
 				<input type="text" class="form-control" placeholder="Enter Designation" aria-label="Designation">
+				<i class="bi bi-asterisk" id="designation"></i>				
 			</div>			
 			<div class="col">
 			<p>Password:</p>
-			<input type="password" name="password" id="password" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" >
+			<input type="password" name="password" id="password" placeholder="Enter Password">
+			<i class="bi bi-asterisk" id="passw"></i>
+			<span id="password2" class="text-danger font-weight-bold "></span>
 			<i  class="bi bi-eye-slash" aria-hidden="true"  id="togglePassword" style="font-size: 20px;"></i>
-            <!-- </div> -->
-			<!-- <div class="col"> -->
 			<p>Confirm Password:</p>			
-			<!-- <input type="cpassword" name="password" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> -->
 			<input type="password" name="cpassword" id="cpassword" placeholder="Re-Enter Password" >
+			<i class="bi bi-asterisk" id="cpassw"></i>
+			<span id="cpass" class="text-danger font-weight-bold "></span>
 			
 			</div>
 			<script>
@@ -108,6 +114,9 @@
 				</script> 
 			
             <input type="submit" value="Register" name="submit" id="submit" onclick="popup()">	
+			<div class="container signin">
+				<p style="font-size: 15px; margin-top: 20px;">Already have an account? <a href="file:///C:/Users/Shiv/OneDrive/Desktop/gitdemo/login.html" style="color: blue; font-size: 13px;">Sign in</a></p>
+			</div>
 			<script>
 				/* function popup(){
 				swal("Good job!", "You clicked the button!", "success");
@@ -117,6 +126,9 @@
 					var empname = document.getElementById('empfullname').value;
 					var empfrname = document.getElementById('empfname').value;
 					var empltname = document.getElementById('emplname').value;
+					var pwd = document.getElementById('password').value;					
+					var pwd2 = document.getElementById('cpassword').value;					
+					var paswd=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 					var correct_way=/^[A-Za-z]+$/;
 					if(empid1 == ""){
 						document.getElementById('empid2').innerHTML="**Please fill Employee ID";						
@@ -143,6 +155,26 @@
 						else{
 						document.getElementById('emplname2').innerHTML="**No special symbols are allowed";						
 						return false;
+						}
+						/*if(pwd.length <=8) {  
+							document.getElementById("password2").innerHTML = "**Password length should be  minimum 8 characters";  
+							return false;  
+							}*/
+						if(pwd == ""){
+						document.getElementById('password2').innerHTML="**Please fill the Password";						
+						return false;
+						}
+						if(pwd.match(paswd)) {	
+							return true;
+							}
+							else{
+								document.getElementById('password2').innerHTML="**Password should be 8 to 15 characters which contain at least one numeric digit and a special character";	
+								return false;
+								}
+						//Password Matching not working
+						if(pwd != pwd2){
+							document.getElementById("cpass").innerHTML="**Password does not match";
+							return false;
 						}
 				}
 			</script>
