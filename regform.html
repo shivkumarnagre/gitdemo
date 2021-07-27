@@ -56,12 +56,12 @@
             <div class="row g-3">
 				<div class="col">
 					<p>DOB:</p>
-					<input type="date" name="birthdate" placeholder="Enter DOB"  >					
+					<input type="date" id="dobdate" name="birthdate" placeholder="Enter DOB"  >					
 					<i class="bi bi-asterisk" id="dob"></i>
 				</div>
 					<div class="col">
 						<p>DOJ:</p>
-						<input type="date" name="joindate" placeholder="Enter DOJ" >
+						<input type="date" id="dojdate" name="joindate" placeholder="Enter DOJ" >
 						<i class="bi bi-asterisk" id="dob"></i>
 					</div>
 			</div>
@@ -79,7 +79,7 @@
 			</div>
 				<div class="col">	
 						<p>Anniversary Date:</p>
-						<input type="date" name="anniversary" placeholder="Enter Anniversary Date" >		  
+						<input  type="date" name="anniversary"  placeholder="Enter Anniversary Date" >		  
 				</div>
 			</div>
 			<div class="col">
@@ -91,14 +91,24 @@
 			<p>Password:</p>
 			<input type="password" name="password" id="password" placeholder="Enter Password">
 			<i class="bi bi-asterisk" id="passw"></i>
-			<span id="password2" class="text-danger font-weight-bold "></span>
+			
 			<i  class="bi bi-eye-slash" aria-hidden="true"  id="togglePassword" style="font-size: 20px;"></i>
+			<span id="password2" class="text-danger font-weight-bold "></span>
 			<p>Confirm Password:</p>			
-			<input type="password" name="cpassword" id="cpassword" placeholder="Re-Enter Password" >
+			<input type="password" name="cpassword" id="cpassword1" placeholder="Re-Enter Password" >
 			<i class="bi bi-asterisk" id="cpassw"></i>
-			<span id="cpass" class="text-danger font-weight-bold "></span>
+			<span id="cpasswd" class="text-danger font-weight-bold "></span>
 			
 			</div>
+			<!-- <script>
+				$('#password, #cpassword1').on('keyup', function () {
+					if ($('#password').val() == $('#cpassword1').val()) {
+						$('#cpasswd').html('Matching').css('color', 'green');
+						}
+						else
+						$('#cpasswd').html('Not Matching').css('color', 'red');
+						});
+			</script> -->
 			<script>
 				const togglePassword = document.querySelector('#togglePassword');
 				const password = document.querySelector('#password');
@@ -127,7 +137,7 @@
 					var empfrname = document.getElementById('empfname').value;
 					var empltname = document.getElementById('emplname').value;
 					var pwd = document.getElementById('password').value;					
-					var pwd2 = document.getElementById('cpassword').value;					
+					var cpwd = document.getElementById('cpassword1').value;					
 					var paswd=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 					var correct_way=/^[A-Za-z]+$/;
 					if(empid1 == ""){
@@ -171,9 +181,13 @@
 								document.getElementById('password2').innerHTML="**Password should be 8 to 15 characters which contain at least one numeric digit and a special character";	
 								return false;
 								}
+						if(cpwd == ""){
+						document.getElementById('cpasswd').innerHTML="**Please fill the Password";						
+						return false;
+						}
 						//Password Matching not working
-						if(pwd != pwd2){
-							document.getElementById("cpass").innerHTML="**Password does not match";
+						if(pwd == cpwd){
+							document.getElementById("cpasswd").innerHTML="**Password does not match";
 							return false;
 						}
 				}
