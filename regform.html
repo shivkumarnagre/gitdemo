@@ -84,8 +84,9 @@
 			</div>
 			<div class="col">
 				<p>Designation:</p>
-				<input type="text" class="form-control" placeholder="Enter Designation" aria-label="Designation">
-				<i class="bi bi-asterisk" id="designation"></i>				
+				<input type="text" id="designat" class="form-control" placeholder="Enter Designation" aria-label="Designation">
+				<i class="bi bi-asterisk" id="designation"></i>
+				<span id="desg" class="text-danger font-weight-bold "></span>		
 			</div>			
 			<div class="col">
 			<p>Password:</p>
@@ -136,10 +137,12 @@
 					var empname = document.getElementById('empfullname').value;
 					var empfrname = document.getElementById('empfname').value;
 					var empltname = document.getElementById('emplname').value;
+					var desig = document.getElementById('designat').value;
 					var pwd = document.getElementById('password').value;					
-					var cpwd = document.getElementById('cpassword1').value;					
+					// var cpwd = document.getElementById('cpassword1').value;					
 					var paswd=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 					var correct_way=/^[A-Za-z]+$/;
+					var cpwd = document.getElementById('cpassword1').value;
 					if(empid1 == ""){
 						document.getElementById('empid2').innerHTML="**Please fill Employee ID";						
 						return false;
@@ -152,14 +155,20 @@
 						document.getElementById('empfullname2').innerHTML="**Please fill  Full Name";						
 						return false;
 					}
-					if(empfrname.match(correct_way)){
+					if(empfrname==""){
+						true;
+					}
+					else if (empfrname.match(correct_way)){
 						true;
 					}
 						else{
 						document.getElementById('empfname2').innerHTML="**No special symbols are allowed";						
 						return false;
 						}
-					if(empltname.match(correct_way)){
+					if(empltname==""){
+						true;
+					}
+					else if (empltname.match(correct_way)){
 						true;
 					}
 						else{
@@ -170,6 +179,10 @@
 							document.getElementById("password2").innerHTML = "**Password length should be  minimum 8 characters";  
 							return false;  
 							}*/
+						if(desig == ""){
+						document.getElementById('desg').innerHTML="**Please fill the Designation";						
+						return false;
+						}
 						if(pwd == ""){
 						document.getElementById('password2').innerHTML="**Please fill the Password";						
 						return false;
@@ -181,12 +194,9 @@
 								document.getElementById('password2').innerHTML="**Password should be 8 to 15 characters which contain at least one numeric digit and a special character";	
 								return false;
 								}
-						if(cpwd == ""){
-						document.getElementById('cpasswd').innerHTML="**Please fill the Password";						
-						return false;
-						}
+						
 						//Password Matching not working
-						if(pwd == cpwd){
+						if(cpwd != pwd){
 							document.getElementById("cpasswd").innerHTML="**Password does not match";
 							return false;
 						}
