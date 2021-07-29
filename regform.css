@@ -1,17 +1,19 @@
 	html{
 		height: 1100px;
+		
 	}
 	body{
 		margin: 0;
 		padding: 0;
-		background-color: #f39f86;
-background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);	
+		/* background-color: #f39f86; */ 
+        background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
 		background-position: center;
 		background-size:auto;
 		font-family: sans-serif;
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		/* background-color: #66e8dc;  */
 	}
 	.form{
 		margin-top: 100px;
@@ -25,6 +27,7 @@ background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
 		transform: translate(-50%, -50%);
 		box-sizing: border-box;
 		padding: 70px 30px;
+		border-radius: 9px;
 		/* box-shadow: 0 15px 25px rgba(0,0,0,0.7);  */
 	}
 	.avatar{
@@ -121,6 +124,7 @@ background-image: linear-gradient(315deg, #f2cf07 0%, #55d284 74%);
   nav a:hover{
     background: skyblue;
     color: black;
+	border-radius: 10px;
   }
 
 
