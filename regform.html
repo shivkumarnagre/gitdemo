@@ -56,7 +56,7 @@
             <div class="row g-3">
 				<div class="col">
 					<p>DOB:</p>
-					<input type="date" id="dobdate" name="birthdate" placeholder="Enter DOB"  >					
+					<input type="date" class="datepicker" id="dobdate"  name="birthdate" placeholder="Enter DOB"  >					
 					<i class="bi bi-asterisk" id="dob"></i>
 				</div>
 					<div class="col">
@@ -65,7 +65,6 @@
 						<i class="bi bi-asterisk" id="dob"></i>
 					</div>
 			</div>
-			
 			<div class="row">
 			<div class="col">
 			<p>Marital Status:</p>
@@ -79,9 +78,55 @@
 			</div>
 				<div class="col">	
 						<p>Anniversary Date:</p>
-						<input  type="date" name="anniversary"  placeholder="Enter Anniversary Date" >		  
+						<input  type="date" name="anniversary" id="anniver"  placeholder="Enter Anniversary Date" >		  
 				</div>
 			</div>
+
+			<script>
+				var todayDate=new Date();
+				var month=todayDate.getMonth()+1;
+				var year =todayDate.getUTCFullYear();
+				var tdate = todayDate.getDate();
+				if(month < 10){
+					month="0"+ month;
+				}
+				if(tdate<10){
+					tdate="0"+tdate;
+				}
+				var maxDate=year+"-"+month+"-"+tdate;
+				document.getElementById('dobdate').setAttribute("max",maxDate);
+				document.getElementById('dojdate').setAttribute("max",maxDate);
+				document.getElementById('anniver').setAttribute("max",maxDate);
+				// console.log(maxDate);
+
+				document.getElementById("dobdate").addEventListener("change", function() {
+				var input = this.value;
+				var dateEntered = new Date(input);
+				// console.log(input); 
+				// console.log(dateEntered); 
+				var month1=dateEntered.getMonth()+1;
+				// console.log(month1);
+				var year1 =dateEntered.getUTCFullYear();
+				// console.log(year1);
+				var tdate1 = dateEntered.getDate();
+				// console.log(tdate1);
+				if(month1 < 10){
+					month1="0"+ month1;
+				}
+				if(tdate1<10){
+					tdate1="0"+tdate1;
+				}
+				var minDate=year1+"-"+month1+"-"+tdate1;
+				// console.log(minDate);
+				document.getElementById('dojdate').setAttribute("min",minDate);
+				document.getElementById('anniver').setAttribute("min",minDate);
+				});
+
+			</script>
+
+
+
+
 			<div class="col">
 				<p>Designation:</p>
 				<input type="text" id="designat" class="form-control" placeholder="Enter Designation" aria-label="Designation">
@@ -91,25 +136,16 @@
 			<div class="col">
 			<p>Password:</p>
 			<input type="password" name="password" id="password" placeholder="Enter Password">
-			<i class="bi bi-asterisk" id="passw"></i>
-			
+			<i class="bi bi-asterisk" id="passw"></i>			
 			<i  class="bi bi-eye-slash" aria-hidden="true"  id="togglePassword" style="font-size: 20px;"></i>
 			<span id="password2" class="text-danger font-weight-bold "></span>
 			<p>Confirm Password:</p>			
 			<input type="password" name="cpassword" id="cpassword1" placeholder="Re-Enter Password" >
 			<i class="bi bi-asterisk" id="cpassw"></i>
-			<span id="cpasswd" class="text-danger font-weight-bold "></span>
+			<span id="cpasswd" ></span>
 			
 			</div>
-			<!-- <script>
-				$('#password, #cpassword1').on('keyup', function () {
-					if ($('#password').val() == $('#cpassword1').val()) {
-						$('#cpasswd').html('Matching').css('color', 'green');
-						}
-						else
-						$('#cpasswd').html('Not Matching').css('color', 'red');
-						});
-			</script> -->
+
 			<script>
 				const togglePassword = document.querySelector('#togglePassword');
 				const password = document.querySelector('#password');
@@ -187,22 +223,27 @@
 							// return true;
 						}
 							else{
-								document.getElementById('password2').innerHTML="**Password should be 8 to 15 characters which contain at least one numeric digit and a special character";	
+								document.getElementById('password2').innerHTML="**Password should be 8 to 15 characters which contain at least one numeric digit and a special character";
 								return false;
 						}
 						if (cpwd ==""){
-							document.getElementById('cpasswd').innerHTML="**Please fill the Password";						
+							document.getElementById('cpasswd').innerHTML="**Please fill the Password";	
+							document.getElementById('cpasswd').style.color="red";					
 						  return false;
 
 						}
 						else if (cpwd != pwd){
-							document.getElementById('cpasswd').innerHTML="**Password does not match";						
+							document.getElementById('cpasswd').innerHTML="**Password does not match";	
+							document.getElementById('cpasswd').style.color="#EF5350";					
 							return false;
 
 						}
-						else{
-							true;
-						}												
+						else if (cpwd == pwd){							
+							document.getElementById('cpasswd').innerHTML="**Matching!!";	
+							document.getElementById('cpasswd').style.color="#00E676";					
+							return true;
+
+						}											
 													
 				}
 			</script>
