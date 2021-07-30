@@ -58,11 +58,13 @@
 					<p>DOB:</p>
 					<input type="date" class="datepicker" id="dobdate"  name="birthdate" placeholder="Enter DOB"  >					
 					<i class="bi bi-asterisk" id="dob"></i>
+					<span id="dobspan" class="text-danger font-weight-bold "></span>
 				</div>
 					<div class="col">
 						<p>DOJ:</p>
 						<input type="date" id="dojdate" name="joindate" placeholder="Enter DOJ" >
 						<i class="bi bi-asterisk" id="dob"></i>
+						<span id="dojspan" class="text-danger font-weight-bold "></span>
 					</div>
 			</div>
 			<div class="row">
@@ -174,7 +176,9 @@
 					var empfrname = document.getElementById('empfname').value;
 					var empltname = document.getElementById('emplname').value;
 					var desig = document.getElementById('designat').value;
-					var pwd = document.getElementById('password').value;										
+					var pwd = document.getElementById('password').value;
+					var dobd = document.getElementById('dobdate').value;
+					var dojd = document.getElementById('dojdate').value;										
 					var paswd=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 					var correct_way=/^[A-Za-z]+$/;
 					var cpwd = document.getElementById('cpassword1').value;
@@ -211,15 +215,25 @@
 						document.getElementById('emplname2').innerHTML="**No special symbols are allowed";						
 						return false;
 						}
-						if(desig == ""){
+
+					if(dobd == ""){
+						document.getElementById('dobspan').innerHTML="**Please fill DOB";						
+						return false;
+					}
+					if(dojd == ""){
+						document.getElementById('dojspan').innerHTML="**Please fill DOJ";						
+					   	return false;
+					}
+
+					if(desig == ""){
 						document.getElementById('desg').innerHTML="**Please fill the Designation";						
 						return false;
-						}
-						if(pwd == ""){
+					}
+					if(pwd == ""){
 						document.getElementById('password2').innerHTML="**Please fill the Password";						
 						return false;
-						}	
-						if(pwd.match(paswd)) {	
+					}	
+					if(pwd.match(paswd)) {	
 							// return true;
 						}
 							else{
