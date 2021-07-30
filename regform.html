@@ -30,7 +30,7 @@
 			<div class="row g-3">
 				<div class="col">
 					<p>Employee ID:</p>
-				  <input type="text" id="empid" class="form-control" placeholder="Employee ID" aria-label="Employee ID" >
+				  <input type="text" id="empid" class="form-control" placeholder="Employee ID" aria-label="Employee ID">
 				  <i class="bi bi-asterisk" id="empida"></i>
 				  <span id="empid2" class="text-danger font-weight-bold "></span>
 				</div>
@@ -138,11 +138,11 @@
 					var empfrname = document.getElementById('empfname').value;
 					var empltname = document.getElementById('emplname').value;
 					var desig = document.getElementById('designat').value;
-					var pwd = document.getElementById('password').value;					
-					// var cpwd = document.getElementById('cpassword1').value;					
+					var pwd = document.getElementById('password').value;										
 					var paswd=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 					var correct_way=/^[A-Za-z]+$/;
 					var cpwd = document.getElementById('cpassword1').value;
+
 					if(empid1 == ""){
 						document.getElementById('empid2').innerHTML="**Please fill Employee ID";						
 						return false;
@@ -175,10 +175,6 @@
 						document.getElementById('emplname2').innerHTML="**No special symbols are allowed";						
 						return false;
 						}
-						/*if(pwd.length <=8) {  
-							document.getElementById("password2").innerHTML = "**Password length should be  minimum 8 characters";  
-							return false;  
-							}*/
 						if(desig == ""){
 						document.getElementById('desg').innerHTML="**Please fill the Designation";						
 						return false;
@@ -186,23 +182,31 @@
 						if(pwd == ""){
 						document.getElementById('password2').innerHTML="**Please fill the Password";						
 						return false;
-						}
+						}	
 						if(pwd.match(paswd)) {	
-							return true;
-							}
+							// return true;
+						}
 							else{
 								document.getElementById('password2').innerHTML="**Password should be 8 to 15 characters which contain at least one numeric digit and a special character";	
 								return false;
-								}
-						
-						//Password Matching not working
-						if(cpwd != pwd){
-							document.getElementById("cpasswd").innerHTML="**Password does not match";
-							return false;
 						}
+						if (cpwd ==""){
+							document.getElementById('cpasswd').innerHTML="**Please fill the Password";						
+						  return false;
+
+						}
+						else if (cpwd != pwd){
+							document.getElementById('cpasswd').innerHTML="**Password does not match";						
+							return false;
+
+						}
+						else{
+							true;
+						}												
+													
 				}
 			</script>
 </form>
-	
+</div>	
 </body>
 </html>
